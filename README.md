@@ -1,4 +1,4 @@
-Create the CRUD SPA
+Create the CRUD operation single page application
 Create reactve form using angular version-11.
 Use Routing Directive,Models.
 Use Side Navigation to navigate defferent component.
