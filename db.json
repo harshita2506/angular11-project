@@ -1,0 +1,38 @@
+{
+  "company": [
+    {
+      "company_name": "harshita jaiswal",
+      "company_address": "LDA Colony Kanpur Road",
+      "created_at": "2021-03-02T18:30:00.000Z",
+      "email": "suyash.ace@gmail.com",
+      "phone_number": 1465476576876,
+      "empInfo": [
+        {
+          "designation": "3",
+          "email": "harshu@gmail.com",
+          "empName": "harshu",
+          "joinDate": "2021-02-28T18:30:00.000Z",
+          "phoneNumber": 576587687687,
+          "educationInfo": [
+            {
+              "instituteName": "coolaege",
+              "courseName": "jgjhgharshu",
+              "completedYear": "2021-03-02T18:30:00.000Z"
+            }
+          ],
+          "skillInfo": [
+            {
+              "skillNamee": "HTML",
+              "skillRating": 5
+            },
+            {
+              "skillNamee": "React",
+              "skillRating": 4
+            }
+          ]
+        }
+      ],
+      "id": 1
+    }
+  ]
+}

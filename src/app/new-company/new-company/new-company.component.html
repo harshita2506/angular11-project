@@ -1,0 +1,179 @@
+<mat-toolbar color='primary'>
+  <h2>{{this.editMode? 'Company Details': ''}}</h2>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="companyFormGroup" (ngSubmit)="onSubmit()">
+
+    <p>
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <input type="text" matInput formControlName="company_name" maxlength="50" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('company_name').touched && companyFormGroup.get('company_name').errors?.required">
+          Company Name is required.
+        </mat-error>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <mat-label>Company Address</mat-label>
+        <input type="text" matInput formControlName="company_address" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('company_address').touched && companyFormGroup.get('company_address').errors?.required">
+          Company Address is required.
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" matInput formControlName="email" maxlength="100" required>
+        <mat-error *ngIf="companyFormGroup.get('email').touched && companyFormGroup.get('email').errors?.required">
+          Email is required.
+        </mat-error>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input type="number" matInput formControlName="phone_number" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('phone_number').touched && companyFormGroup.get('phone_number').errors?.required">
+          Phone Number is required.
+        </mat-error>
+        <mat-hint>Phone number maxlength 15</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Created At</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="created_at" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('created_at').touched && companyFormGroup.get('created_at').errors?.required">
+          Created At is required.
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </p>
+
+    <h2>Employee Information</h2>
+    <p>
+      <mat-form-field>
+        <mat-label>Employee Name</mat-label>
+        <input type="text" matInput formControlName="employee_name" maxlength="25" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('employee_name').touched && companyFormGroup.get('employee_name').errors?.required">
+          Employee Name is required.
+        </mat-error>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <mat-label>Designation</mat-label>
+        <mat-select formControlName="designation" required>
+          <mat-option *ngFor="let element of designations" [value]="element.id">
+            {{element.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="companyFormGroup.get('designation').touched && companyFormGroup.get('designation').errors?.required">
+          Designation is required.
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Join Date</mat-label>
+        <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="join_date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="companyFormGroup.get('join_date').touched && companyFormGroup.get('join_date').errors?.required">
+          Join Date is required.
+        </mat-error>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <mat-label>Employee Email</mat-label>
+        <input type="text" matInput formControlName="emp_Email" maxlength="100" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('emp_Email').touched && companyFormGroup.get('emp_Email').errors?.required">
+          Employee Email is required.
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <mat-label>Employee Phone Number</mat-label>
+        <input type="number" matInput formControlName="phone_number1" maxlength="15" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('phone_number1').touched && companyFormGroup.get('phone_number1').errors?.required">
+          Employee Phone Number is required.
+        </mat-error>
+        <mat-hint>Phone number maxlength 15</mat-hint>
+      </mat-form-field>&nbsp;
+    </p>
+
+    <h2>Skills Information</h2>
+    <div formArrayName="skillName" *ngFor="let item of companyFormGroup.get('skillName')['controls']; let i = index;">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>Skills Name</mat-label>
+          <mat-select formControlName="skill_name">
+            <mat-option *ngFor="let element of skills" [value]="element" required>
+              {{element}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>&nbsp;
+        <mat-form-field>
+          <mat-label>Skills Rating</mat-label>
+          <input type="number" matInput formControlName="skill_rating" required>
+          <mat-hint>Skill rating must be 1-5</mat-hint>
+        </mat-form-field>&nbsp;
+        <button type="button" (click)="addItem()" color="primary" mat-raised-button>Add More+</button>&nbsp;
+        <button (click)="removeQuantity(i)" color="warn" mat-raised-button>Remove</button>
+      </div>
+    </div>
+
+    <h2>Education Information</h2>
+    <p>
+      <mat-form-field>
+        <mat-label>School or College Name</mat-label>
+        <input type="text" matInput formControlName="college_name" maxlength="50" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('college_name').touched && companyFormGroup.get('college_name').errors?.required">
+          School/College Name is required.
+        </mat-error>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <mat-label>Course Name</mat-label>
+        <input type="text" matInput formControlName="course_name" maxlength="25" required>
+        <mat-error
+          *ngIf="companyFormGroup.get('course_name').touched && companyFormGroup.get('course_name').errors?.required">
+          Course Name is required.
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appCustomDate>
+        <mat-label>Completed Year</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="completed_year" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error
+          *ngIf="companyFormGroup.get('completed_year').touched && companyFormGroup.get('completed_year').errors?.required">
+          completed Year is required.
+        </mat-error>
+      </mat-form-field>
+    </p>&nbsp;
+
+    <mat-dialog-actions align="end">
+      <button [disabled]=companyFormGroup.invalid *ngIf="!editMode" type="submit" color="primary" mat-raised-button>Add
+        New Details</button>&nbsp;
+      <button [disabled]=companyFormGroup.invalid *ngIf="editMode" type="submit" color="primary"
+        mat-raised-button>Update</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</div>
