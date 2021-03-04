@@ -1,0 +1,15 @@
+<mat-sidenav #sidenav class="sidenavstyle">
+  <mat-nav-list (click)="sidenav.toggle()">
+    <a mat-list-item routerLink ="company-list" style="color: white;">Company List</a>
+    <a mat-list-item routerLink ="new-company" style="color: white;">New Company</a>
+  </mat-nav-list>
+</mat-sidenav>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button aria-label="Menu" (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
