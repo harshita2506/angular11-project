@@ -24,8 +24,8 @@ import { CompanyListModule } from './company-list/company-list/company-list.modu
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    NewCompanyModule,
-    CompanyListModule,
+    // NewCompanyModule,
+    // CompanyListModule,
   ],
   exports: [
   ],

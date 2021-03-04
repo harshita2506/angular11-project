@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
 import { NewCompanyComponent } from './new-company.component';
 
+
 const route: Routes = [
-  { path: 'new-company', component: NewCompanyComponent }
+  { path: '', component: NewCompanyComponent }
 ]
 @NgModule({
   declarations: [],
