@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NewCompanyRoutingModule } from './new-company-routing.module';
 
-console.warn("hiiiiiiiiii")
-
 @NgModule({
   declarations: [NewCompanyComponent],
   imports: [SharedModule, ReactiveFormsModule, CommonModule, NewCompanyRoutingModule],

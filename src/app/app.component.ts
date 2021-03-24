@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { routes } from './app-routing.module';
 
 @Component({
@@ -6,6 +6,9 @@ import { routes } from './app-routing.module';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   routes = routes;
+  constructor() { }
+  ngOnInit(): void {}
+   
 }

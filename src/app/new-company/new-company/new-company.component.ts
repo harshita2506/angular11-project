@@ -8,6 +8,7 @@ import { EmpInfo } from 'src/app/model/employeeInfo';
 import { EducationInfo } from 'src/app/model/educationInfo';
 import { SkillInfo } from 'src/app/model/skillInfo';
 import { Router } from '@angular/router';
+import { NewServiceService } from 'src/app/services/new-service.service';
 
 @Component({
   selector: 'app-new-company',
@@ -38,7 +39,7 @@ export class NewCompanyComponent implements OnInit {
     'GIT', 'AWS', 'Python', 'Django', 'C', 'C++', 'C#', 'Unity', 'R', 'AI', 'NLP', 'Photoshop', 'Nodejs'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public row: any, private snackBarService: SnackbarService, private dialogRef: MatDialogRef<NewCompanyComponent>,
-    private formBuilder: FormBuilder, private http: HttpClient, private route: Router
+    private formBuilder: FormBuilder, private http: HttpClient, private route: Router, private getService: NewServiceService
   ) { }
 
   ngOnInit(): void {
@@ -162,7 +163,7 @@ export class NewCompanyComponent implements OnInit {
     this.userData = companyInfo;
     localStorage.setItem('company', JSON.stringify(this.userData));
     if (this.editMode) {
-      this.http.put('http://localhost:3000/company/' + this.row.id, companyInfo)
+      this.getService.updateCompany('api/Company', this.row._id, companyInfo)
         .subscribe(data => {
           this.companyArray = data;
           if (this.cancelButton === false) {
@@ -171,17 +172,17 @@ export class NewCompanyComponent implements OnInit {
           }
         });
     } else {
-      this.http.post('http://localhost:3000/company', companyInfo)
+      this.getService.addCompany('/api/Company', companyInfo)
         .subscribe(data => {
           this.companyArray = data;
           this.snackBarService.showSnackBar('Company details submitted successfully', '', 'success');
-          this.route.navigate(['/comapany-list'])
+          this.route.navigate(['/company-list'])
         });
     }
   }
 
   getCompanyDetail(): void {
-    this.http.get('http://localhost:3000/company')
+    this.getService.getCompany('/api/Company')
       .subscribe(data => {
         this.employeeData = data;
       });

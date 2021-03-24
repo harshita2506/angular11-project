@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import { SnackbarService } from 'src/app/shared/snackbar.service';
 import { NewCompanyComponent } from 'src/app/new-company/new-company/new-company.component';
 import { MatSort } from '@angular/material/sort';
+import { NewServiceService } from 'src/app/services/new-service.service';
 
 export interface CompanyListElement {
   company_name: string;
@@ -33,7 +34,7 @@ export class CompanyListComponent implements OnInit, AfterViewInit {
   length: number = 0;
   pageIndex = 0;
   pageSizeOptions = [5, 10, 20];
-  constructor(private http: HttpClient, private dialog: MatDialog, private snackBarService: SnackbarService) { }
+  constructor(private http: HttpClient, private getSer: NewServiceService, private dialog: MatDialog, private snackBarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.getCompanyList(this.newEvent);
@@ -46,7 +47,7 @@ export class CompanyListComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   getCompanyList(event: PageEvent): void {
-    this.http.get('http://localhost:3000/company')
+    this.getSer.getCompany('/api/Company')
       .subscribe(result => {
         this.companyList = result;
         this.dataSource = new MatTableDataSource<CompanyListElement>(this.companyList);
@@ -75,7 +76,7 @@ export class CompanyListComponent implements OnInit, AfterViewInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.http.delete('http://localhost:3000/company/' + row.id)
+        this.getSer.deleteCompany('/api/Company', row._id)
           .subscribe(() => {
             this.snackBarService.showSnackBar('Company details deleted successfully', '', 'success');
             this.getCompanyList(this.newEvent);

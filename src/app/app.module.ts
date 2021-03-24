@@ -8,8 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { NewCompanyModule } from './new-company/new-company/new-company.module';
-import { CompanyListModule } from './company-list/company-list/company-list.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +21,7 @@ import { CompanyListModule } from './company-list/company-list/company-list.modu
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    CoreModule,
-    // NewCompanyModule,
-    // CompanyListModule,
+    CoreModule
   ],
   exports: [
   ],
