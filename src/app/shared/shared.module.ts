@@ -64,6 +64,7 @@ import { CommonModule } from '@angular/common';
     MatSnackBarModule,
     MatInputModule,
     MatSelectModule,
+	CustomDateDirective,
      RouterModule
     ],
   providers: [
